@@ -88,6 +88,16 @@ function updatePageColorScheme(scheme) {
     default:
       break;
   }
+  setTimeout(() => {
+    document
+      .querySelector('meta[name="theme-color"]')
+      .setAttribute(
+        "content",
+        window
+          .getComputedStyle(document.getElementsByTagName("body")[0])
+          .getPropertyValue("background-color")
+      );
+  }, 500);
 }
 
 function updateColorSchemeIcons(mode) {
