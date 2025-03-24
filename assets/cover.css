@@ -1,0 +1,109 @@
+:root {
+  --accent: var(--thm-l-accent);
+
+  --footer-bg-color: var(--accent);
+  --footer-text-color: black;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  font-family: "Cascadia Mono", monospace;
+
+  background-color: var(--accent);
+  color: black;
+
+  user-select: none;
+  overscroll-behavior-y: none;
+}
+
+/* --- */
+
+h1 {
+  margin-bottom: 16px;
+  line-height: initial;
+}
+
+hr {
+  width: 24px;
+
+  border: solid black 0.7px;
+  opacity: 0.6;
+}
+
+footer {
+  margin-top: 32px;
+}
+
+/* --- */
+
+a:link {
+  text-decoration: underline;
+  text-underline-offset: 2.25px;
+  text-decoration-thickness: 1.5px;
+
+  color: white;
+  background-color: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+
+  color: var(--accent);
+  color: var(--accent);
+  background-color: black;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+a:link.none {
+  text-decoration: none;
+  text-underline-offset: inherit;
+  text-decoration-thickness: inherit;
+
+  color: inherit;
+  background-color: inherit;
+  transition: none;
+}
+
+a:hover.none {
+  color: inherit;
+  background-color: inherit;
+  transition: none;
+}
+
+a img {
+  display: block;
+}
+
+/*  */
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  flex: 1 0;
+
+  text-align: center;
+  line-height: 1.1lh;
+
+  padding-inline: 8px;
+}
+
+#cs-logo {
+  width: 128px;
+}
+
+main hr {
+  margin-bottom: 24px;
+}

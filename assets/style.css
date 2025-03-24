@@ -1,0 +1,166 @@
+:root {
+  --footer-bg-color: white;
+  --footer-text-color: black;
+  --footer-hover-color: var(--footer-text-color);
+
+  --thm-l-accent: #f5fff8;
+  --thm-l-background-primary: #fff;
+  --thm-l-background-secondary: #f6f7f8;
+  --thm-l-background-tertiary: #e8eaeb;
+  --thm-l-background-primary-hover: #efefef;
+  --thm-l-background-secondary-hover: #dedddf;
+  --thm-l-background-tertiary-hover: #d4d6d8;
+  --thm-l-background-modifier-hover: #cccccc80;
+  --thm-l-border-primary: #ccc;
+  --thm-l-border-secondary: #aaa;
+  --thm-l-text-primary: #444;
+  --thm-l-text-secondary: #666;
+  --thm-l-text-tertiary: #aaa;
+  --thm-l-modal-backdrop: #444444a0;
+  --thm-l-shadow: rgba(192, 192, 192, 0.5);
+
+  --thm-d-accent: #f5fff8;
+  --thm-d-background-primary: #1d1d1d;
+  --thm-d-background-secondary: #262626;
+  --thm-d-background-tertiary: #323232;
+  --thm-d-background-primary-hover: #222222;
+  --thm-d-background-secondary-hover: #303030;
+  --thm-d-background-tertiary-hover: #444444;
+  --thm-d-background-modifier-hover: #44444480;
+  --thm-d-border-primary: #444444;
+  --thm-d-border-secondary: #3a3a3a;
+  --thm-d-text-primary: #eee;
+  --thm-d-text-secondary: #aaa;
+  --thm-d-text-tertiary: #666;
+  --thm-d-modal-backdrop: #0a0a0aa0;
+  --thm-d-shadow: rgba(0, 0, 0, 0.5);
+}
+
+@font-face {
+  font-family: "Cascadia Mono";
+  src: local("Cascadia Mono"), url(/assets/fonts/CascadiaMono.ttf);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* --- */
+
+.stop-transitions * {
+  transition: none !important;
+}
+
+/* --- INNER DIV CLASS --- */
+
+.inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 0 16px;
+}
+
+/* --- */
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding-bottom: 12px;
+
+  text-align: center;
+
+  background-color: var(--footer-bg-color);
+}
+
+#footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  row-gap: 16px;
+
+  text-align: center;
+}
+
+#footer-content * {
+  margin-inline: 16px;
+}
+
+/* --- */
+
+footer hr {
+  width: 24px;
+
+  border: solid var(--footer-text-color) 0.7px;
+  opacity: 0.6;
+
+  margin-bottom: 12px;
+  transition: width 0.2s, border-color 0.2s;
+}
+
+footer:hover hr {
+  border-color: var(--footer-hover-color);
+
+  width: 192px;
+  transition: width 0.2s;
+}
+
+/* --- */
+
+footer a:link {
+  text-decoration: underline;
+  text-underline-offset: 2.25px;
+  text-decoration-thickness: 1.5px;
+
+  color: var(--footer-text-color);
+  background-color: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+footer a:visited {
+  color: var(--footer-text-color);
+}
+
+footer a:hover {
+  text-decoration: none;
+
+  color: var(--footer-bg-color);
+  background-color: var(--footer-text-color);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* --- */
+
+footer:hover a:link {
+  color: var(--footer-hover-color);
+}
+
+footer:hover a:visited {
+  color: var(--footer-hover-color);
+}
+
+footer:hover a:hover {
+  color: var(--footer-bg-color);
+  background-color: var(--footer-hover-color);
+}
