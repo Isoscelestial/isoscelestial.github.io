@@ -1,0 +1,706 @@
+/* --- SCAHOO BOARD --- */
+
+.scahoo-board {
+  padding-bottom: 24px;
+  padding-inline: 16px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  overflow-x: auto;
+
+  width: fit-content;
+}
+
+/* Replaced by .scahoo-board {padding-inline: 16px;} to remove margins on sides when overflow-x scrolling */
+.scahoo-tab-content .inner {
+  padding: 0;
+
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 992px) {
+  .scahoo-tab-content .inner {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* --- SCAHOO CATEGORY --- */
+
+.scahoo-category {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1 0;
+}
+
+.scahoo-category h3 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  margin-left: 24px;
+
+  font-size: 18pt;
+}
+
+.scahoo-category-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* --- SCAHOO BOARD CARD --- */
+
+.scahoo-board-card {
+  margin: 8px;
+
+  min-width: calc(320px - 16px);
+  width: min-content;
+  height: fit-content;
+
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  outline: 1px solid var(--border-primary);
+
+  color: var(--text-primary);
+  box-shadow: 0 0 8px var(--shadow);
+
+  transition: outline-width 0.3s ease-in, background-color 0.15s,
+    outline-color 0.15s, box-shadow 0.15s;
+}
+
+@media screen and (max-width: 672px) {
+  .scahoo-board-card {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 672px) and (max-width: 992px) {
+  .scahoo-board-card {
+    width: calc(50% - 16px);
+  }
+}
+
+.scahoo-board-card:hover {
+  outline-width: 4px;
+  transition: outline-width 0.1s linear, background-color 0.15s,
+    outline-color 0.15s, box-shadow 0.15s;
+}
+
+/* --- SCAHOO BOARD CARD HEADING --- */
+
+.scahoo-board-card-heading {
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px 8px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.scahoo-board-card[open] .scahoo-board-card-heading {
+  border-radius: 8px 8px 0 0;
+}
+
+/* --- SCAHOO BOARD CARD KICKER --- */
+
+.scahoo-board-card-kicker {
+  display: flex;
+  margin-left: 8px;
+  margin-bottom: 4px;
+
+  height: 14px;
+
+  font-size: 9pt;
+  font-weight: 500;
+
+  color: var(--text-secondary);
+}
+
+.scahoo-board-card-icon {
+  color: var(--text-tertiary);
+}
+
+.scahoo-board-card-icon * {
+  height: 14px;
+  stroke-width: 2.5px;
+}
+
+.scahoo-board-card-kicker span {
+  margin-right: 4px;
+
+  flex-grow: 1;
+
+  font-style: italic;
+
+  color: var(--text-tertiary);
+}
+
+.scahoo-board-card-arrow * {
+  height: 14px;
+  width: 14px;
+  stroke-width: 2.5px;
+
+  transition: scale 0.3s;
+}
+
+.scahoo-board-card
+  .scahoo-board-card-heading
+  .scahoo-board-card-kicker
+  .scahoo-board-card-arrow {
+  transition: scale 0.3s, rotate 0.1s ease-out;
+  rotate: 0deg;
+}
+
+.scahoo-board-card[open]
+  .scahoo-board-card-heading
+  .scahoo-board-card-kicker
+  .scahoo-board-card-arrow {
+  rotate: -180deg;
+}
+
+.scahoo-board-card-heading:hover
+  .scahoo-board-card-kicker
+  .scahoo-board-card-arrow {
+  scale: 1.5;
+  border-radius: 50%;
+}
+
+/* --- SCAHOO BOARD CARD TITLE TEXT --- */
+
+.scahoo-board-card-title {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.scahoo-board-card-title h4 {
+  margin: 0;
+  margin-left: 8px;
+  padding: 0;
+
+  font-size: 14pt;
+  font-weight: bold;
+
+  color: var(--text-primary);
+}
+
+/* --- SCAHOO BOARD CARD CONTENT --- */
+
+/* .scahoo-board-card-content {} */
+
+.scahoo-board-card-description {
+  margin: -8px 6px 6px;
+
+  padding: 8px;
+  padding-left: 12px;
+
+  font-size: 10pt;
+  color: var(--text-secondary);
+
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.15s;
+}
+
+.scahoo-board-card-description:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.scahoo-board-card-description *:not(.more-info) {
+  display: inline-block;
+  line-height: 1.2em;
+  height: 2.4em;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.scahoo-board-card-description *:not(.more-info)::after {
+  content: "Read more...";
+  padding-left: 4px;
+  color: var(--text-tertiary);
+
+  font-style: italic;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.scahoo-board-card-description:hover *:not(.more-info)::after {
+  text-decoration: underline;
+}
+
+/* --- SCAHOO BOARD TASK --- */
+
+.scahoo-board-task {
+  display: flex;
+  min-height: 48px;
+
+  margin: 6px;
+
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  outline: 1px solid var(--border-primary);
+
+  cursor: pointer;
+
+  transition: background-color 0.15s, outline-color 0.15s, box-shadow 0.15s;
+}
+
+.scahoo-board-task:hover {
+  background-color: var(--background-tertiary-hover);
+}
+
+/* --- SCAHOO BOARD TASK STATUS --- */
+
+.scahoo-board-task-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 14px;
+
+  height: 100%;
+  width: calc(8px + 32px);
+
+  transition: scale 0.15s;
+}
+
+.scahoo-board-task-status * {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5px;
+}
+
+.scahoo-board-task-status:hover {
+  scale: 1.15;
+}
+
+/* --- SCAHOO BOARD TASK STATUS COLORS --- */
+
+/* when task is new to the user; has not been interacted with */
+.scahoo-board-task-status.new {
+  color: var(--accent);
+}
+
+/* when task status is Not Started */
+.scahoo-board-task-status.pending {
+  color: var(--text-secondary);
+}
+
+/* when task status is Work in Progress */
+.scahoo-board-task-status.working {
+  color: yellow;
+}
+
+/* when task is Done */
+.scahoo-board-task-status.done {
+  color: limegreen;
+}
+
+/* when task status is unknown */
+.scahoo-board-task-status.unknown {
+  color: orange;
+}
+
+/* --- SCAHOO BOARD TASK CONTENT --- */
+
+.scahoo-board-task-content {
+  display: flex;
+  align-items: left;
+  /* justify-content: center; */
+  justify-content: top;
+  flex-direction: column;
+
+  flex: 1 0;
+
+  padding: 8px 0;
+}
+
+.scahoo-board-task-content-group {
+  color: var(--text-secondary);
+
+  font-size: 9pt;
+}
+
+.scahoo-board-task-content-name {
+  font-size: 12pt;
+  font-weight: 500;
+}
+
+/* --- SCAHOO BOARD TASK OPEN ICON --- */
+
+.scahoo-board-task-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 16px;
+
+  height: 100%;
+  width: calc(8px + 32px);
+
+  color: var(--text-secondary);
+
+  transition: scale 0.15s, color 0.15s;
+}
+
+.scahoo-board-task-open * {
+  height: 14px;
+}
+
+.scahoo-board-task:hover .scahoo-board-task-open {
+  scale: 1.3;
+  color: var(--accent);
+}
+
+/* --- SCAHOO MODAL --- */
+
+body:has(.scahoo-modal-wrapper.open) {
+  width: calc(100vw - (100vw - 100%));
+  overflow: hidden;
+}
+
+.scahoo-modal-wrapper {
+  display: none;
+
+  position: fixed;
+  /* top: 0; */
+  inset: 0;
+
+  z-index: 5;
+}
+
+.scahoo-modal-wrapper.open {
+  display: block;
+}
+
+.scahoo-modal-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-backdrop);
+
+  transition: background-color 0.15s;
+}
+
+.scahoo-modal-inner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.scahoo-modal {
+  position: relative;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+  margin: 2px;
+  margin-top: calc(env(safe-area-inset-top) + 2px);
+
+  width: 768px;
+
+  max-width: 100vw;
+  max-height: 100vh;
+
+  background-color: var(--background-primary);
+  border-radius: 8px;
+  outline: 1px solid var(--border-primary);
+  box-shadow: 0 0 8px var(--shadow);
+
+  color: var(--text-primary);
+
+  overflow-y: auto;
+
+  transition: background-color 0.15s, outline-color 0.15s, box-shadow 0.15s;
+}
+
+/* --- SCAHOO MODAL CLOSE BUTTON --- */
+
+.scahoo-modal-close-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+
+  padding: 4px;
+
+  border-radius: 50%;
+
+  transition: background-color 0.15s;
+}
+
+.scahoo-modal-close-button-icon {
+  width: 24px;
+  height: 24px;
+
+  color: var(--text-secondary);
+
+  transition: scale 0.15s;
+}
+
+.scahoo-modal-close-button-icon * {
+  width: 24px;
+  height: 24px;
+}
+
+.scahoo-modal-close-button:hover {
+  background-color: var(--background-modifier-hover);
+}
+.scahoo-modal-close-button:hover .scahoo-modal-close-button-icon {
+  scale: 1.3;
+}
+
+/* --- SCAHOO MODAL CONTENT --- */
+
+.scahoo-modal-heading {
+  padding: 16px;
+}
+
+.scahoo-modal-title {
+  margin: 0;
+  padding: 8px 0;
+
+  font-size: 18pt;
+  font-weight: bold;
+
+  color: var(--text-primary);
+}
+
+/* .scahoo-modal-description {} */
+
+/* --- SCAHOO MODAL TASK STATUS --- */
+
+.scahoo-modal-task-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: calc(8px + 32px);
+
+  transition: scale 0.15s;
+}
+
+.scahoo-modal-task-status * {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5px;
+}
+
+.scahoo-modal-task-status:hover {
+  scale: 1.15;
+}
+
+/* --- SCAHOO MODAL TASK --- */
+
+.scahoo-modal-task-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.scahoo-modal-task {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  margin: 6px;
+
+  flex: 1 1 384px;
+
+  min-width: 0;
+
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  outline: 1px solid var(--border-primary);
+
+  transition: background-color 0.15s, outline-color 0.15s, box-shadow 0.15s;
+}
+
+.scahoo-modal-task hr {
+  margin: 8px auto;
+  width: calc(100% - 44px - 16px);
+}
+
+/* --- SCAHOO MODAL TASK SUBMISSION --- */
+
+.scahoo-modal-task-submission {
+  padding: 8px;
+  margin: 6px;
+  margin-left: 2px;
+
+  /* min-width: 128px; */
+
+  flex: 0 1 128px;
+
+  overflow-wrap: break-word;
+
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  outline: 1px solid var(--border-primary);
+
+  transition: background-color 0.15s, outline-color 0.15s, box-shadow 0.15s;
+}
+
+@media screen and (max-width: 625px) {
+  .scahoo-modal-task-submission {
+    margin: 6px;
+    margin-top: 2px;
+    padding-left: calc(32px + 8px);
+
+    width: 100%;
+
+    flex: 1 2 128px;
+
+    min-height: 64px;
+  }
+}
+
+.scahoo-modal-task-submission-title {
+  padding: 0;
+  font-size: 12pt;
+  color: var(--text-primary);
+}
+
+.scahoo-modal-task-submission-content {
+  padding-top: 12px;
+}
+
+.scahoo-modal-task-submission-description {
+  font-size: 10pt;
+  color: var(--text-primary);
+}
+
+/* --- SCAHOO MODAL TASK HEADING --- */
+
+.scahoo-modal-task-heading {
+  display: flex;
+  height: 48px;
+  width: 100%;
+}
+
+.scahoo-modal-task-heading-content {
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+
+  flex: 1 0;
+}
+
+.scahoo-modal-task-heading-group {
+  color: var(--text-secondary);
+
+  font-size: 9pt;
+}
+
+.scahoo-modal-task-heading-name {
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+/* --- SCAHOO MODAL TASK CONTENT --- */
+
+.scahoo-modal-task-content {
+  padding: 8px;
+  min-height: 128px;
+}
+
+.scahoo-modal-task-description-wrapper {
+  padding-left: 32px;
+}
+
+.scahoo-modal-task-description {
+  font-size: 10pt;
+}
+
+/* --- SCAHOO MODAL TASK RESOURCES --- */
+
+.scahoo-modal-task-resources {
+  margin-top: 16px;
+
+  border-radius: 8px;
+}
+
+.scahoo-modal-task-resources hr {
+  margin: 8px auto;
+  width: calc(100% - 44px);
+}
+
+.scahoo-modal-task-resources h5 {
+  margin-left: 32px;
+  margin-top: 12px;
+  padding: 0;
+  font-size: 12pt;
+  color: var(--text-primary);
+  /* margin-left: 8px; */
+}
+
+.scahoo-modal-task-resources-content {
+  margin-left: calc(32px + 8px);
+}
+
+/* --- SCAHOO MODAL TASK RESOURCE ---*/
+
+.scahoo-modal-task-resource {
+  margin-top: 12px;
+  padding: 8px;
+
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  outline: 1px solid var(--border-primary);
+
+  transition: background-color 0.15s, outline-color 0.15s, box-shadow 0.15s;
+}
+
+.scahoo-modal-task-resource:hover {
+  background-color: var(--background-secondary-hover);
+}
+
+.scahoo-modal-task-resource-heading {
+  display: flex;
+}
+
+.scahoo-modal-task-resource-title {
+  padding: 0;
+  font-size: 10pt;
+}
+
+.scahoo-modal-task-resource-link-icon * {
+  height: 14px;
+  stroke-width: 2.5px;
+}
+
+.scahoo-modal-task-resource-description {
+  font-size: 9pt;
+  margin-left: 4px;
+  color: var(--text-secondary);
+}
+
+/* --- SCAHOO MODAL TASK RESOURCE LINK --- */
+
+.scahoo-modal-task-resource-link:link {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.scahoo-modal-task-resource-link:visited {
+  color: var(--text-primary);
+}
+
+.scahoo-modal-task-resource-link:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CS Scavenger Hunt | Scahoo</title>
+  <link rel="shortcut icon" href="../assets/images/logo/scahoo-512x.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  
+  <link rel="manifest" href="/pwa/scahoo/manifest.json" />
+
+  <link rel="stylesheet" href="../assets/styles/scavenger-hunt.css" />
+  <link rel="stylesheet" href="../assets/styles/map.css" />
+  <meta id="scahoo-current-tab" content="map">
+
+  <link class="color-scheme" id="color-scheme-light" rel="stylesheet" href="../assets/color-schemes/light.css" disabled>
+  <link class="color-scheme" id="color-scheme-dark" rel="stylesheet" href="../assets/color-schemes/dark.css">
+  <script src="../assets/colorScheme.js"></script>
+
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/ol@v10.2.1/dist/ol.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css"> -->
+
+
+</head>
+
+<body class="stop-transitions">
+  <script>
+    0;
+  </script>
+  <nav id="main-navbar">
+    <div class="inner">
+      <a href="/" id="navbar-logo">
+        <span>Scahoo</span>
+      </a>
+      <button id="color-scheme-switcher">
+        <div id="color-scheme-switcher-icon">
+          <i class="color-scheme-icon-auto" data-lucide="sun-moon"></i>
+          <i class="color-scheme-icon-dark" data-lucide="moon"></i>
+          <i class="color-scheme-icon-light" data-lucide="sun"></i>
+        </div>
+      </button>
+    </div>
+  </nav>
+  <main>
+    <div class="scahoo-info">
+      <div class="inner">
+        <h1 class="scahoo-info-title"></h1>
+        <a class="scahoo-info-description">
+          <p></p>
+        </a>
+      </div>
+    </div>
+    <div class="scahoo-tabs">
+      <div class="inner"></div>
+    </div>
+    <div id="content" class="scahoo-tab-content">
+      <!-- ID is for URL anchor of #content -->
+      <div class="inner">
+        <div class="scahoo-instructions">
+          <div class="scahoo-instructions-icon">
+            <input type="checkbox" checked="" class="scahoo-instructions-checkbox">
+            <i class="scahoo-instructions-icon-close" data-lucide="circle-x"></i>
+            <i class="scahoo-instructions-icon-open" data-lucide="circle-help"></i>
+          </div>
+          <div class="scahoo-instructions-content">
+            <h2>Instructions</h2>
+            <p>
+              Complete a card by performing each of its tasks. Click/tap on a task to view instructions on how to
+              perform and submit it.
+              <br><br>
+              You can view a full list of every card and task on the
+              <a href="../board/">board</a>.
+            </p>
+          </div>
+        </div>
+        <div class="scahoo-map">
+          <div class="scahoo-map-content">
+            <!-- <img src="../assets/data/map.svg" alt="map"> -->
+            <div id="scahoo-leaflet-map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- <footer>
+    <hr />
+    <div id="footer-content">
+      <a href="https://github.com/Isoscelestial/">GitHub</a>
+      <a href="https://github.com/Isoscelestial/Isoscelestial.github.io/">Repository</a>
+    </div>
+  </footer> -->
+
+  <template class="tem-scahoo-tab">
+    <a class="scahoo-tab">
+      <div class="scahoo-tab-icon">
+        <i data-lucide="circle-help"></i>
+      </div>
+      <span class="scahoo-tab-name">Tab</span>
+    </a>
+  </template>
+
+  <template class="tem-scahoo-category">
+    <div class="scahoo-category">
+      <h3>Category</h3>
+      <div class="scahoo-category-cards"></div>
+    </div>
+  </template>
+
+  <template class="tem-scahoo-board-card">
+    <details class="scahoo-board-card" open>
+      <summary class="scahoo-board-card-heading">
+        <div class="scahoo-board-card-kicker">
+          <div class="scahoo-board-card-icon">
+            <i data-lucide="code"></i>
+          </div>
+          <span>Skills</span>
+          <div class="scahoo-board-card-arrow">
+            <i data-lucide="chevron-up"></i>
+          </div>
+        </div>
+        <div class="scahoo-board-card-title">
+          <h4>Title</h4>
+        </div>
+      </summary>
+      <div class="scahoo-board-card-content">
+        <div class="scahoo-board-card-description">
+          <span> Description </span>
+          <!-- <span class="more-info">More info...</span> -->
+        </div>
+        <div class="scahoo-board-tasks"></div>
+      </div>
+    </details>
+  </template>
+
+  <template class="tem-scahoo-board-task">
+    <div class="scahoo-board-task">
+      <div class="scahoo-board-task-status pending">
+        <i data-lucide="circle"></i>
+      </div>
+      <div class="scahoo-board-task-content">
+        <div class="scahoo-board-task-content-group">
+          <span class="scahoo-board-task-group">Discriminator: Value</span>
+          <span> • </span>
+          <span class="scahoo-board-task-points">0 pts</span>
+        </div>
+        <span class="scahoo-board-task-content-name">Name</span>
+      </div>
+      <div class="scahoo-board-task-open">
+        <i data-lucide="play"></i>
+      </div>
+    </div>
+  </template>
+
+  <template class="tem-scahoo-modal">
+    <div class="scahoo-modal-wrapper open">
+      <div class="scahoo-modal-bg">
+        <div class="scahoo-modal-inner-wrapper">
+          <div class="scahoo-modal">
+            <div class="scahoo-modal-heading">
+              <h4 class="scahoo-modal-title">Title</h4>
+              <div class="scahoo-modal-description-wrapper">
+                <span class="scahoo-modal-description">Description</span>
+              </div>
+            </div>
+            <div class="scahoo-modal-close-button">
+              <div class="scahoo-modal-close-button-icon">
+                <i data-lucide="x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template class="tem-scahoo-modal-task">
+    <div class="scahoo-modal-task-wrapper">
+      <div class="scahoo-modal-task">
+        <div class="scahoo-modal-task-heading">
+          <div class="scahoo-modal-task-status pending">
+            <i data-lucide="circle"></i>
+          </div>
+          <div class="scahoo-modal-task-heading-content">
+            <div class="scahoo-modal-task-heading-group">
+              <span class="scahoo-modal-task-group">Discriminator: Value</span>
+              <span> • </span>
+              <span class="scahoo-modal-task-points">0 pts</span>
+            </div>
+            <span class="scahoo-modal-task-heading-name">Name</span>
+          </div>
+        </div>
+        <hr>
+        <div class="scahoo-modal-task-content">
+          <div class="scahoo-modal-task-description-wrapper">
+            <span class="scahoo-modal-task-description">
+              Description
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="scahoo-modal-task-submission">
+        <h5 class="scahoo-modal-task-submission-title">How to submit</h5>
+        <div class="scahoo-modal-task-submission-content">
+          <span class="scahoo-modal-task-submission-description"></span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template class="tem-scahoo-task-resources">
+    <div class="scahoo-modal-task-resources">
+      <hr>
+      <h5>Need help?</h5>
+      <div class="scahoo-modal-task-resources-content">
+      </div>
+    </div>
+  </template>
+
+  <template class="tem-scahoo-task-resource">
+    <div class="scahoo-modal-task-resource">
+      <a class="scahoo-modal-task-resource-link" href="https://example.com" target="_blank" rel="noopener noreferrer">
+        <div class="scahoo-modal-task-resource-heading">
+          <h4 class="scahoo-modal-task-resource-title">Title</h4>
+          <div class="scahoo-modal-task-resource-link-icon">
+            <i data-lucide="external-link"></i>
+          </div>
+        </div>
+        <div task-resource-content>
+          <div class="scahoo-modal-task-resource-description-wrapper">
+            <span class="scahoo-modal-task-resource-description">Description</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </template>
+
+  <script src="../assets/scripts/scavenger-hunt.js" async defer type="module"></script>
+  <script src="../assets/scripts/map.js" async defer type="module"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
