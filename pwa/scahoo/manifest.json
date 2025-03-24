@@ -4,8 +4,8 @@
   "short_name": "Scahoo",
   "description": "Scahoo",
   "start_url": "/pwa/scahoo/",
-  "background_color": "#1d1d1d",
-  "theme_color": "#5408d8",
+  "background_color": "#5408d8",
+  "theme_color": "#1d1d1d",
   "orientation": "any",
   "display": "standalone",
   "icons": [
