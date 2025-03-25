@@ -5,6 +5,9 @@
   --footer-text-color: var(--text-secondary);
   --footer-hover-color: var(--text-primary);
 
+  --title-bar-height: 48px;
+  --tab-bar-height: calc(48px + max(env(safe-area-inset-bottom, 16px), 8px));
+
   font-family: Inter, sans-serif;
   font-feature-settings: "liga" 1, "calt" 1;
 }
@@ -17,10 +20,7 @@
 html,
 body {
   overscroll-behavior: none;
-}
-
-nav {
-  padding-top: env(safe-area-inset-top, 0);
+  overflow: hidden;
 }
 
 body,
@@ -81,6 +81,7 @@ details > summary::-webkit-details-marker {
 body {
   background-color: var(--background-tertiary);
   transition: background-color 0.15s;
+  height: 100vh;
 }
 
 body.sticking {
@@ -149,11 +150,15 @@ a:hover {
 
 /* --- NAVBAR --- */
 
-#main-navbar {
+#titlebar {
   z-index: 5;
   position: relative;
 
-  background-color: var(--background-tertiary);
+  height: var(--title-bar-height);
+
+  padding-top: env(safe-area-inset-top, 0);
+
+  background-color: var(--background-primary);
   outline: 1px solid var(--border-primary);
   box-shadow: 0 0 0 var(--shadow);
 
@@ -164,25 +169,62 @@ a:hover {
   box-shadow: 0 0 8px var(--shadow);
 }
 
-#main-navbar .inner {
+#titlebar .inner {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 
   position: relative;
+
+  height: 100%;
+
+  padding-right: 0;
 }
 
-#main-navbar a {
+.scahoo-titlebar-logo {
+  height: calc(100% - 16px);
+  border-radius: 50%;
+  flex: 0 1 0;
+  padding: 8px;
+}
+
+.scahoo-title {
+  text-wrap: nowrap;
+  font-weight: 600;
+  font-size: 14pt;
+
+  color: var(--text-primary);
+  overflow: none;
+}
+
+.scahoo-close-hunt-button {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 16px;
+
+  background-color: var(--background-primary);
+  box-shadow: 0 0 16px var(--background-primary);
+}
+
+.scahoo-close-hunt-icon {
+  color: var(--text-primary);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+/* #titlebar a {
   text-decoration: none;
 }
 
-#main-navbar a:hover {
+#titlebar a:hover {
   text-decoration: none;
 
   color: inherit;
   background-color: var(--background-tertiary-hover);
-}
+} */
 
 /* --- COLOR SCHEME SWITCHER --- */
 
@@ -262,8 +304,8 @@ a:hover {
 }
 
 .scahoo-info-title {
-  padding-top: 16px;
-  padding-bottom: 4px;
+  /* padding-top: 16px;
+  padding-bottom: 4px; */
 }
 
 .scahoo-info-description {
@@ -302,37 +344,55 @@ a:hover {
   background-color: var(--background-tertiary-hover);
 }
 
+/* --- MAIN --- */
+
+main {
+  overflow-y: scroll;
+  height: calc(100vh - var(--title-bar-height) - var(--tab-bar-height));
+}
+
 /* --- SCAHOO TABS --- */
 
 .scahoo-tabs {
-  background-color: var(--background-tertiary);
+  position: fixed;
+  bottom: 0;
 
-  transition: background-color 0.15s;
-}
-
-.scahoo-tabs .inner {
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(100%);
+  height: calc(
+    var(--tab-bar-height) - max(env(safe-area-inset-bottom, 16px), 8px)
+  );
+
+  z-index: 99;
+  padding-bottom: max(env(safe-area-inset-bottom, 16px), 8px);
+
   flex-direction: row;
 
-  height: 40px;
+  background-color: var(--background-primary);
+  border-top: var(--stroke-secondary) 1px solid;
+  box-shadow: 0 0 32px black;
 
-  overflow-x: auto;
+  transition: background-color 0.15s;
 }
 
 a.scahoo-tab {
   position: relative;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 
-  margin-right: 4px;
+  margin: 0;
+  margin-inline: 6px;
 
-  height: calc(100% - 2px); /* subtract border-top width */
-  min-width: 128px;
-  flex-shrink: 0;
+  flex: 1 1 0;
+  max-width: 96px;
+  height: 36px;
 
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px;
 
   text-decoration: none;
   white-space: nowrap;
@@ -341,49 +401,16 @@ a.scahoo-tab {
   user-select: none;
 }
 
-a.scahoo-tab.selected::before {
-  content: "";
-  position: absolute;
-  left: -8px;
-  bottom: 0;
-
-  width: 8px;
-  height: 4px;
-  border-bottom-right-radius: 4px;
-
-  background-color: transparent;
-
-  box-shadow: 4px 0 0 0 var(--background-primary);
-
-  transition: box-shadow 0.15s;
-}
-
-a.scahoo-tab.selected::after {
-  content: "";
-  position: absolute;
-  right: -8px;
-  bottom: 0;
-
-  width: 8px;
-  height: 4px;
-  border-bottom-left-radius: 4px;
-
-  background-color: transparent;
-
-  box-shadow: -4px 0 0 0 var(--background-primary);
-
-  transition: box-shadow 0.15s;
-}
-
 .scahoo-tab-icon {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 14px;
-  height: 14px;
-  padding-left: 12px;
-  padding-right: 8px;
+  width: 20px;
+  height: 20px;
+  /* padding-left: 12px;
+  padding-right: 8px; */
+  padding: 6px 0 4px;
 }
 
 .scahoo-tab-icon * {
@@ -391,34 +418,43 @@ a.scahoo-tab.selected::after {
 }
 
 .scahoo-tab-name {
-  margin-right: 16px;
+  font-size: 8pt;
+  background-color: var(--background-primary);
+  z-index: 100;
+  padding-inline: 4px;
+  /* margin-right: 16px; */
 }
 
 /* --- SCAHOO TAB STATES --- */
 
 a.scahoo-tab {
-  border-top: 2px solid transparent;
+  outline: 2px solid transparent;
 
   color: var(--text-secondary);
 
-  transition: color 0.15s, background-color 0.15s, border-top 0.15s;
+  transition: color 0.15s, background-color 0.15s, outline 0.15s;
 }
 
 a.scahoo-tab:hover:not(.disabled):not(.selected) {
-  border-top-color: var(--text-tertiary);
+  outline-color: var(--text-tertiary);
 
-  background-color: var(--background-tertiary-hover);
-}
-
-a.scahoo-tab.selected {
-  border-top-color: var(--text-secondary);
-
-  color: var(--text-primary);
   background-color: var(--background-primary);
 }
 
+a.scahoo-tab.selected {
+  outline-color: var(--stroke-secondary);
+  box-shadow: 0 0 8px var(--shadow);
+
+  color: var(--text-primary);
+  /* background-color: var(--background-secondary); */
+}
+
+a.scahoo-tab.selected .scahoo-tab-icon {
+  color: var(--text-primary);
+}
+
 a.scahoo-tab.selected:hover {
-  border-top-color: var(--accent);
+  outline-color: var(--accent);
 
   color: var(--text-primary);
   background-color: var(--background-primary);

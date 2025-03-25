@@ -7,6 +7,8 @@
   --background-secondary-hover: var(--thm-l-background-secondary-hover);
   --background-tertiary-hover: var(--thm-l-background-tertiary-hover);
   --background-modifier-hover: var(--thm-l-background-modifier-hover);
+  --stroke-primary: var(--thm-l-stroke-primary);
+  --stroke-secondary: var(--thm-l-stroke-secondary);
   --border-primary: var(--thm-l-border-primary);
   --border-secondary: var(--thm-l-border-secondary);
   --text-primary: var(--thm-l-text-primary);

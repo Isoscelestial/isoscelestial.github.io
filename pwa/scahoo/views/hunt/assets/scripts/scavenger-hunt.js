@@ -14,22 +14,22 @@ const tabDefinitions = {
   board: {
     name: "Board",
     icon: "layout-grid",
-    href: "/pwa/scahoo/board",
+    href: "../board",
   },
   map: {
     name: "Map",
     icon: "map",
-    href: "/pwa/scahoo/map/",
+    href: "../map/",
   },
   leaderboard: {
     name: "Leaderboard",
     icon: "trophy",
-    href: "/pwa/scahoo/leaderboard/",
+    href: "../leaderboard/",
   },
   about: {
     name: "About",
     icon: "info",
-    href: "/pwa/scahoo/about/",
+    href: "../about/",
     // disabled: true,
   },
 };
@@ -61,18 +61,18 @@ document.querySelectorAll("body").forEach((element) => {
 
 function setupInfo() {
   if (hunt.info.title) {
-    document.querySelector(".scahoo-info-title").innerText = hunt.info.title;
+    let element = document.querySelector(".scahoo-title");
+    if (element) element.innerText = hunt.info.title;
   }
   if (hunt.info.description) {
-    document.querySelector(".scahoo-info-description p").innerText =
-      hunt.info.description;
+    let element = document.querySelector(".scahoo-info-description p");
+    if (element) element.innerText = hunt.info.description;
   }
   if (hunt.tabs) {
     // If about tab is enabled and not currently on about tab
     if (hunt.tabs["about"] == true && currentTab != "about") {
-      document
-        .querySelector(".scahoo-info-description")
-        .setAttribute("href", "../about/");
+      let element = document.querySelector(".scahoo-info-description p");
+      if (element) element.setAttribute("href", "../about/");
     }
   }
 }
@@ -126,7 +126,7 @@ function setupTabs() {
           tabClone.classList.add("selected");
         }
 
-        document.querySelector(".scahoo-tabs .inner").appendChild(tabClone);
+        document.querySelector(".scahoo-tabs").appendChild(tabClone);
         lucide.createIcons();
       }
     }
@@ -163,11 +163,11 @@ const scrollWatcher = document.createElement("div");
 scrollWatcher.setAttribute("data-scroll-watcher", "");
 body.before(scrollWatcher);
 
-let topSectionHeight =
-  document.querySelector("#main-navbar").offsetHeight +
-  document.querySelector(".scahoo-info").offsetHeight +
-  document.querySelector(".scahoo-tabs").offsetHeight -
-  1; // Subtract 1px to allow for #content anchor to work
+// let topSectionHeight =
+//   document.querySelector("#main-navbar").offsetHeight +
+//   document.querySelector(".scahoo-info").offsetHeight +
+//   document.querySelector(".scahoo-tabs").offsetHeight -
+//   1; // Subtract 1px to allow for #content anchor to work
 
 const navObserver = new IntersectionObserver(
   (entries) => {

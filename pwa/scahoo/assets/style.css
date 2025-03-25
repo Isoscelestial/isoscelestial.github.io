@@ -3,7 +3,7 @@
   --footer-text-color: black;
   --footer-hover-color: var(--footer-text-color);
 
-  --thm-l-accent: #022d62;
+  --thm-l-accent: #5408d8;
   --thm-l-background-primary: #fff;
   --thm-l-background-secondary: #f6f7f8;
   --thm-l-background-tertiary: #e8eaeb;
@@ -19,16 +19,19 @@
   --thm-l-modal-backdrop: #444444a0;
   --thm-l-shadow: rgba(192, 192, 192, 0.5);
 
-  --thm-d-accent: #3f8ae6;
-  --thm-d-background-primary: #1d1d1d;
-  --thm-d-background-secondary: #262626;
-  --thm-d-background-tertiary: #323232;
+  --thm-d-accent: #8146e9;
+  --thm-d-background-primary: #121418;
+  --thm-d-background-secondary: #222428;
+  --thm-d-background-tertiary: #323438;
+  --thm-d-stroke-primary: #c2c4c8;
+  --thm-d-stroke-secondary: #828488;
+
   --thm-d-background-primary-hover: #222222;
   --thm-d-background-secondary-hover: #303030;
   --thm-d-background-tertiary-hover: #444444;
   --thm-d-background-modifier-hover: #44444480;
-  --thm-d-border-primary: #444444;
-  --thm-d-border-secondary: #3a3a3a;
+  --thm-d-border-primary: #323438;
+  --thm-d-border-secondary: #424448;
   --thm-d-text-primary: #eee;
   --thm-d-text-secondary: #aaa;
   --thm-d-text-tertiary: #666;

@@ -108,17 +108,17 @@ function updateColorSchemeIcons(mode) {
     case "auto":
       document
         .querySelector(".color-scheme-icon-auto")
-        .classList.remove("color-scheme-switcher-hidden");
+        ?.classList.remove("color-scheme-switcher-hidden");
       break;
     case "light":
       document
         .querySelector(".color-scheme-icon-light")
-        .classList.remove("color-scheme-switcher-hidden");
+        ?.classList.remove("color-scheme-switcher-hidden");
       break;
     case "dark":
       document
         .querySelector(".color-scheme-icon-dark")
-        .classList.remove("color-scheme-switcher-hidden");
+        ?.classList.remove("color-scheme-switcher-hidden");
       break;
 
     default:

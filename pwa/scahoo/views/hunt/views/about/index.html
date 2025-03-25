@@ -4,12 +4,12 @@
     <title>CS Scavenger Hunt | Scahoo</title>
     <link
       rel="shortcut icon"
-      href="../assets/images/logo/scahoo-512x.png"
+      href="../../../../assets/images/logo/scahoo-512x.png"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../../../../assets/style.css" />
 
-    <link rel="manifest" href="/pwa/scahoo/manifest.json" />
+    <link rel="manifest" href="../../../../manifest.json" />
     <meta name="theme-color" content="#323232" />
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -19,24 +19,24 @@
       content="black-translucent"
     />
 
-    <link rel="stylesheet" href="../assets/styles/scavenger-hunt.css" />
-    <link rel="stylesheet" href="../assets/styles/about.css" />
+    <link rel="stylesheet" href="../../assets/styles/scavenger-hunt.css" />
+    <link rel="stylesheet" href="../../assets/styles/about.css" />
     <meta id="scahoo-current-tab" content="about" />
 
     <link
       class="color-scheme"
       id="color-scheme-light"
       rel="stylesheet"
-      href="../assets/color-schemes/light.css"
+      href="../../../../assets/color-schemes/light.css"
       disabled
     />
     <link
       class="color-scheme"
       id="color-scheme-dark"
       rel="stylesheet"
-      href="../assets/color-schemes/dark.css"
+      href="../../../../assets/color-schemes/dark.css"
     />
-    <script src="../assets/colorScheme.js"></script>
+    <script src="../../../../assets/colorScheme.js"></script>
 
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -56,32 +56,17 @@
     <script>
       0;
     </script>
-    <nav id="main-navbar">
+    <div id="titlebar">
       <div class="inner">
-        <a href="/" id="navbar-logo">
-          <span>Scahoo</span>
-        </a>
-        <button id="color-scheme-switcher">
-          <div id="color-scheme-switcher-icon">
-            <i class="color-scheme-icon-auto" data-lucide="sun-moon"></i>
-            <i class="color-scheme-icon-dark" data-lucide="moon"></i>
-            <i class="color-scheme-icon-light" data-lucide="sun"></i>
-          </div>
-        </button>
+        <img
+          class="scahoo-titlebar-logo"
+          src="../../../../assets/images/logo/scahoo-512x.png"
+          alt=""
+        />
+        <span class="scahoo-title"></span>
       </div>
-    </nav>
+    </div>
     <main>
-      <div class="scahoo-info">
-        <div class="inner">
-          <h1 class="scahoo-info-title"></h1>
-          <a class="scahoo-info-description">
-            <p></p>
-          </a>
-        </div>
-      </div>
-      <div class="scahoo-tabs">
-        <div class="inner"></div>
-      </div>
       <div id="content" class="scahoo-tab-content">
         <!-- ID is for URL anchor of #content -->
         <div class="inner">
@@ -151,6 +136,7 @@
         </div>
       </div>
     </main>
+    <div class="scahoo-tabs"></div>
     <!-- <footer>
     <hr />
     <div id="footer-content">
@@ -169,12 +155,17 @@
     </template>
 
     <script
-      src="../assets/scripts/scavenger-hunt.js"
+      src="../../assets/scripts/scavenger-hunt.js"
       async
       defer
       type="module"
     ></script>
-    <script src="../assets/scripts/about.js" async defer type="module"></script>
+    <script
+      src="../../assets/scripts/about.js"
+      async
+      defer
+      type="module"
+    ></script>
     <script>
       lucide.createIcons();
     </script>

@@ -8,9 +8,9 @@
     />
     <meta name="HandheldFriendly" content="true" />
 
-    <meta http-equiv="refresh" content="0; url=views/hunt/" />
+    <meta http-equiv="refresh" content="0; url=views/board/" />
 
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="../../manifest.json" />
     <meta name="theme-color" content="#323232" />
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -20,30 +20,33 @@
       content="black-translucent"
     />
 
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+    <link rel="stylesheet" href="assets/styles/scavenger-hunt.css" />
 
     <link
       class="color-scheme"
       id="color-scheme-light"
       rel="stylesheet"
-      href="assets/color-schemes/light.css"
+      href="../../assets/color-schemes/light.css"
       disabled
     />
     <link
       class="color-scheme"
       id="color-scheme-dark"
       rel="stylesheet"
-      href="assets/color-schemes/dark.css"
+      href="../../assets/color-schemes/dark.css"
     />
-    <script src="assets/colorScheme.js"></script>
+    <script src="../../assets/colorScheme.js"></script>
     <script>
       refreshColorScheme();
     </script>
+
+    <script src="assets/data/hunt.js" type="module"></script>
   </head>
 
   <body>
     <script type="module">
-      window.location.replace("views/hunt/");
+      window.location.replace("views/board/");
     </script>
   </body>
 </html>
